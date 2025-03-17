@@ -1,0 +1,19 @@
+digraph G {
+"diff_drive" -> "diff_drive/front_wheel_r"[label=" Broadcaster: default_authority\nAverage rate: 1010.336\nBuffer length: 4.934\nMost recent transform: 68.304\nOldest transform: 63.37\n"];
+"diff_drive/odom" -> "diff_drive"[label=" Broadcaster: default_authority\nAverage rate: 50.203\nBuffer length: 4.92\nMost recent transform: 68.3\nOldest transform: 63.38\n"];
+"diff_drive" -> "diff_drive/front_wheel_l"[label=" Broadcaster: default_authority\nAverage rate: 1010.336\nBuffer length: 4.934\nMost recent transform: 68.304\nOldest transform: 63.37\n"];
+"diff_drive" -> "diff_drive/back_wheel_r"[label=" Broadcaster: default_authority\nAverage rate: 1010.336\nBuffer length: 4.934\nMost recent transform: 68.304\nOldest transform: 63.37\n"];
+"diff_drive" -> "diff_drive/back_wheel_l"[label=" Broadcaster: default_authority\nAverage rate: 1010.336\nBuffer length: 4.934\nMost recent transform: 68.304\nOldest transform: 63.37\n"];
+"diff_drive" -> "diff_drive/mid_leg_r"[label=" Broadcaster: default_authority\nAverage rate: 1010.336\nBuffer length: 4.934\nMost recent transform: 68.304\nOldest transform: 63.37\n"];
+"diff_drive" -> "diff_drive/mid_leg_l"[label=" Broadcaster: default_authority\nAverage rate: 1010.336\nBuffer length: 4.934\nMost recent transform: 68.304\nOldest transform: 63.37\n"];
+"diff_drive" -> "diff_drive/base"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"diff_drive/base" -> "diff_drive/lidar_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"diff_drive/mid_leg_l" -> "diff_drive/back_leg_l"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"diff_drive/mid_leg_r" -> "diff_drive/back_leg_r"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"diff_drive/mid_leg_l" -> "diff_drive/front_leg_l"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"diff_drive/mid_leg_r" -> "diff_drive/front_leg_r"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1742244663.2320213"[ shape=plaintext ] ;
+}->"diff_drive/odom";
+}

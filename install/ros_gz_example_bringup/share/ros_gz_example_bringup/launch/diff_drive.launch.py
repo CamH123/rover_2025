@@ -24,8 +24,6 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
 from launch_ros.actions import Node
-
-
 def generate_launch_description():
     # Configure ROS nodes for launch
 
@@ -60,15 +58,25 @@ def generate_launch_description():
         parameters=[
             {'use_sim_time': True},
             {'robot_description': robot_desc},
-            {'frame_prefix': ''},
+            {'frame_prefix': 'diff_drive/'},
         ]
+    )
+    # Add this to your launch file
+    static_transform_publisher = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='diff_drive_tf_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'diff_drive', 'diff_drive/base']
     )
 
     joint_state_publisher = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
         name='joint_state_publisher',
-        parameters=[{'use_sim_time': True}],
+        parameters=[
+            {'use_sim_time': True},
+            {'source_list': ['/joint_states']}
+            ],
     )
 
     # Visualize in RViz
@@ -89,12 +97,6 @@ def generate_launch_description():
         }],
         output='screen'
     )
-    odom_base_publisher = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='odom_base_publisher',
-        arguments=['0', '0', '0', '0', '0', '0', 'diff_drive/odom', 'diff_drive/base']
-    )  
 
     return LaunchDescription([
         gz_sim,
@@ -104,5 +106,5 @@ def generate_launch_description():
         robot_state_publisher,
         rviz,
         joint_state_publisher,
-        odom_base_publisher
+        static_transform_publisher,
     ])
