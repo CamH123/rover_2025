@@ -10,6 +10,11 @@
   <author>Dharini Dutia</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>ros_gz_interfaces</depend>
+  <exec_depend>teleop_twist_keyboard</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
 

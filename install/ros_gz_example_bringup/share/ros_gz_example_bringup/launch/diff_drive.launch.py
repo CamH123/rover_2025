@@ -98,6 +98,14 @@ def generate_launch_description():
         output='screen'
     )
 
+    skid_controller = Node(
+        package='ros_gz_example_application',
+        executable='skid_controller.py',  # or 'skid_controller' if using C++
+        name='skid_controller',
+        output='screen',
+        parameters=[{'use_sim_time': True}]
+    )
+
     return LaunchDescription([
         gz_sim,
         DeclareLaunchArgument('rviz', default_value='true',
@@ -107,4 +115,5 @@ def generate_launch_description():
         rviz,
         joint_state_publisher,
         static_transform_publisher,
+        skid_controller,
     ])

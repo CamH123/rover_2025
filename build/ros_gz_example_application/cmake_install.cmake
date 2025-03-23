@@ -43,6 +43,10 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/ros_gz_example_application" TYPE PROGRAM FILES "/home/cameron/template_ws/src/ros_gz_project_template/ros_gz_example_application/scripts/skid_controller.py")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/home/cameron/template_ws/build/ros_gz_example_application/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/ros_gz_example_application")
 endif()
 

@@ -81,8 +81,8 @@
      </geometry>
    </collision>
    <inertial>
-     <mass value="0.8"/>
-     <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+     <mass value="1.5"/>
+     <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
    </inertial>
  </link>
   <link name="front_leg_r">
@@ -117,8 +117,8 @@
      </geometry>
    </collision>
    <inertial>
-     <mass value="0.8"/>
-     <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+     <mass value="1.5"/>
+     <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
    </inertial>
  </link>
   <link name="back_leg_r">
@@ -168,6 +168,15 @@
        <cylinder length="0.067" radius="0.079"/>
      </geometry>
    </visual>
+   <visual>
+     <origin xyz="0 0 0.04" rpy="0 0 0"/>
+     <geometry>
+       <box size="0.04 0.04 0.001"/>
+     </geometry>
+     <material name="white">
+       <color rgba="1.0 1.0 1.0 1.0"/>
+     </material>
+   </visual>
    <collision>
      <origin xyz="0 0 0" rpy="0 0 0"/>
      <geometry>
@@ -175,8 +184,8 @@
      </geometry>
    </collision>
    <inertial>
-     <mass value="0.8"/>
-     <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+     <mass value="1.5"/>
+     <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
    </inertial>
  </link>
   <link name="front_leg_l">
@@ -211,8 +220,8 @@
      </geometry>
    </collision>
    <inertial>
-     <mass value="0.8"/>
-     <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+     <mass value="1.5"/>
+     <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
    </inertial>
  </link>
   <link name="back_leg_l">
@@ -234,7 +243,7 @@
    </inertial>
  </link>
   <joint name="bkwheel_to_leg_l" type="continuous">
-    <origin xyz="0.12 0 0.0565" rpy="0 0 1"/>
+    <origin xyz="0.12 0 0.0565" rpy="0 0 0"/>
     <parent link="back_leg_l"/>
     <child link="back_wheel_l"/>
       <axis xyz = "0 0 1"/>
@@ -255,6 +264,47 @@
    <parent link="mid_leg_l"/>
    <child link="back_leg_l"/>
  </joint>
+  <!-- Friction-->
+  <!-- <gazebo reference="front_wheel_r">
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+    <fdir1>0 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="back_wheel_r">
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+    <fdir1>0 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="front_wheel_l">
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+    <fdir1>0 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="back_wheel_l">
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+    <fdir1>0 1 0</fdir1>
+  </gazebo> -->
+
   <!-- LiDAR Link -->
   <link name="lidar_link">
     <visual>
@@ -324,50 +374,42 @@
     </lidar>
     <visualize>true</visualize>
   </sensor>
+
   <plugin
-   filename="libignition-gazebo-diff-drive-system.so"
-   name="ignition::gazebo::systems::DiffDrive">
-   <left_joint>frwheel_to_leg_l</left_joint>
-   <right_joint>frwheel_to_leg_r</right_joint>
-   <wheel_separation>0.24</wheel_separation>
-   <wheel_radius>0.079</wheel_radius>
-   <odom_publish_frequency>1</odom_publish_frequency>
-   <topic>cmd_vel</topic>
-   <frame_id>diff_drive/odom</frame_id>
-   <child_frame_id>diff_drive</child_frame_id>
+    filename="libignition-gazebo-joint-controller-system.so"
+    name="ignition::gazebo::systems::JointController">
+    <joint_name>frwheel_to_leg_r</joint_name>
+    <use_velocity_commands>true</use_velocity_commands>
+    <initial_velocity>1.0</initial_velocity>
+    <topic>/model/diff_drive/joint/frwheel_to_leg_r/cmd_vel</topic>
   </plugin>
-  <!-- Moving Forward-->
-  <plugin filename="libignition-gazebo-triggered-publisher-system.so"
-        name="ignition::gazebo::systems::TriggeredPublisher">
-    <input type="ignition.msgs.Int32" topic="/keyboard/keypress">
-        <match field="data">16777235</match>
-    </input>
-    <output type="ignition.msgs.Twist" topic="/cmd_vel">
-        linear: {x: -0.5}, angular: {z: 0.0}
-    </output>
+
+  <plugin
+    filename="libignition-gazebo-joint-controller-system.so"
+    name="ignition::gazebo::systems::JointController">
+    <joint_name>frwheel_to_leg_l</joint_name>
+    <use_velocity_commands>true</use_velocity_commands>
+    <initial_velocity>1.0</initial_velocity>
+    <topic>/model/diff_drive/joint/frwheel_to_leg_l/cmd_vel</topic>
   </plugin>
-  <!-- Moving Backward-->
-  <plugin filename="libignition-gazebo-triggered-publisher-system.so"
-        name="ignition::gazebo::systems::TriggeredPublisher">
-    <input type="ignition.msgs.Int32" topic="/keyboard/keypress">
-        <match field="data">16777237</match>
-    </input>
-    <output type="ignition.msgs.Twist" topic="/cmd_vel">
-        linear: {x: 0.5}, angular: {z: 0.0}
-    </output>
+  
+  <plugin
+    filename="libignition-gazebo-joint-controller-system.so"
+    name="ignition::gazebo::systems::JointController">
+    <joint_name>bkwheel_to_leg_r</joint_name>
+    <initial_velocity>1.0</initial_velocity>
+    <use_velocity_commands>true</use_velocity_commands>
+    <topic>/model/diff_drive/joint/bkwheel_to_leg_r/cmd_vel</topic>
   </plugin>
-   <!-- Stopping-->
-  <plugin filename="libignition-gazebo-triggered-publisher-system.so"
-        name="ignition::gazebo::systems::TriggeredPublisher">
-    <input type="ignition.msgs.Int32" topic="/keyboard/keypress">
-        <match field="data">16777236</match>
-    </input>
-    <output type="ignition.msgs.Twist" topic="/cmd_vel">
-        linear: {x: 0.0}, angular: {z: 0.5}
-    </output>
+  
+  <plugin
+    filename="libignition-gazebo-joint-controller-system.so"
+    name="ignition::gazebo::systems::JointController">
+    <joint_name>bkwheel_to_leg_l</joint_name>
+    <use_velocity_commands>true</use_velocity_commands>
+    <initial_velocity>1.0</initial_velocity>
+    <topic>/model/diff_drive/joint/bkwheel_to_leg_l/cmd_vel</topic>
   </plugin>
-  <plugin name="keyboard_control" filename="libignition-gazebo-keyboard-control-system.so">
-  <topic>/keyboard/keypress</topic>
-  </plugin>
+
  </gazebo>
 </robot>
