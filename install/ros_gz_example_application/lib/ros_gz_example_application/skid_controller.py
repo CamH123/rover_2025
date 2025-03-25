@@ -26,14 +26,17 @@ class SkidSteeringController(Node):
         
         # Robot parameters
         self.wheel_radius = 0.079  # From your URDF
-        self.wheel_separation = 0.24  # From your URDF (distance between left and right wheels)
+        self.wheel_separation = 0.29  # From your URDF (distance between left and right wheels)
         
         self.get_logger().info('Skid Steering Controller has been started')
         
     def twist_callback(self, msg):
+
+        lin_mult = 2
+        ang_mult = 10
         # Extract linear and angular velocities from the Twist message
-        linear_x = msg.linear.x
-        angular_z = msg.angular.z
+        linear_x = msg.linear.x * lin_mult
+        angular_z = msg.angular.z * ang_mult
         
         # Calculate wheel velocities for skid steering
         left_velocity = linear_x - (angular_z * self.wheel_separation / 2.0)

@@ -53,14 +53,14 @@
      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
    </inertial>
  </link>
-  <joint name="base_to_lleg" type="revolute">
+  <joint name="base_to_lleg" type="fixed">
     <origin xyz="0 -0.12 0" rpy="1.5708 0 0"/>
     <parent link="base"/>
     <child link="mid_leg_l"/>
     <axis xyz = "0 0 1"/>
     <limit effort="10.0" velocity="5.0" lower="-0.5" upper="0.5"/>
   </joint>
-    <joint name="base_to_rleg" type="revolute">
+    <joint name="base_to_rleg" type="fixed">
     <origin xyz="0 0.12 0" rpy="1.5708 0 0"/>
     <parent link="base"/>
     <child link="mid_leg_r"/>
@@ -323,7 +323,7 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.1"/>
+      <mass value="0.0"/>
       <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
     </inertial>
   </link>
