@@ -67,7 +67,7 @@
     <axis xyz = "0 0 1"/>
     <limit effort="10.0" velocity="5.0" lower="-0.5" upper="0.5"/>
   </joint>
-  <link name="front_wheel_r">
+  <link name="front_wheel_l">
    <visual>
      <origin xyz="0 0 0" rpy="0 0 0"/>
      <geometry>
@@ -103,7 +103,7 @@
      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
    </inertial>
  </link>
-  <link name="back_wheel_r">
+  <link name="back_wheel_l">
    <visual>
      <origin xyz="0 0 0" rpy="0 0 0"/>
      <geometry>
@@ -152,16 +152,16 @@
   <joint name="bkwheel_to_leg_r" type="continuous">
     <origin xyz="0.12 0 -0.0565" rpy="0 0 0"/>
     <parent link="back_leg_r"/>
-    <child link="back_wheel_r"/>
+    <child link="back_wheel_l"/>
     <axis xyz = "0 0 1"/>
   </joint>
   <joint name="frwheel_to_leg_r" type="continuous">
     <origin xyz="-0.12 0 -0.0565" rpy="0 0 0"/>
     <parent link="front_leg_r"/>
-    <child link="front_wheel_r"/>
+    <child link="front_wheel_l"/>
     <axis xyz = "0 0 1"/>
   </joint>
-  <link name="front_wheel_l">
+  <link name="front_wheel_r">
    <visual>
      <origin xyz="0 0 0" rpy="0 0 0"/>
      <geometry>
@@ -206,7 +206,7 @@
      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
    </inertial>
  </link>
-  <link name="back_wheel_l">
+  <link name="back_wheel_r">
    <visual>
      <origin xyz="0 0 0" rpy="0 0 0"/>
      <geometry>
@@ -245,13 +245,13 @@
   <joint name="bkwheel_to_leg_l" type="continuous">
     <origin xyz="0.12 0 0.0565" rpy="0 0 0"/>
     <parent link="back_leg_l"/>
-    <child link="back_wheel_l"/>
+    <child link="back_wheel_r"/>
       <axis xyz = "0 0 1"/>
   </joint>
   <joint name="frwheel_to_leg_l" type="continuous">
     <origin xyz="-0.12 0 0.0565" rpy="0 0 0"/>
     <parent link="front_leg_l"/>
-    <child link="front_wheel_l"/>
+    <child link="front_wheel_r"/>
     <axis xyz = "0 0 1"/>
   </joint>
   <joint name="mid_to_front_l" type="fixed">
@@ -265,27 +265,7 @@
    <child link="back_leg_l"/>
  </joint>
   <!-- Friction-->
-  <!-- <gazebo reference="front_wheel_r">
-    <mu1>10.0</mu1>
-    <mu2>10.0</mu2>
-    <kp>1000000.0</kp>
-    <kd>100.0</kd>
-    <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
-    <fdir1>0 1 0</fdir1>
-  </gazebo>
-
-  <gazebo reference="back_wheel_r">
-    <mu1>10.0</mu1>
-    <mu2>10.0</mu2>
-    <kp>1000000.0</kp>
-    <kd>100.0</kd>
-    <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
-    <fdir1>0 1 0</fdir1>
-  </gazebo>
-
-  <gazebo reference="front_wheel_l">
+  <!-- <gazebo reference="front_wheel_l">
     <mu1>10.0</mu1>
     <mu2>10.0</mu2>
     <kp>1000000.0</kp>
@@ -296,6 +276,26 @@
   </gazebo>
 
   <gazebo reference="back_wheel_l">
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+    <fdir1>0 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="front_wheel_r">
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+    <fdir1>0 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="back_wheel_r">
     <mu1>10.0</mu1>
     <mu2>10.0</mu2>
     <kp>1000000.0</kp>
