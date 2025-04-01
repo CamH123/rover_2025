@@ -32,8 +32,8 @@ class SkidSteeringController(Node):
         
     def twist_callback(self, msg):
 
-        lin_mult = 2
-        ang_mult = 10
+        lin_mult = 2.7
+        ang_mult = 3.6
         # Extract linear and angular velocities from the Twist message
         linear_x = msg.linear.x * lin_mult
         angular_z = msg.angular.z * ang_mult

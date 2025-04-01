@@ -1,12 +1,4 @@
 <?xml version="1.0" ?>
-<!--
-  Try sending commands:
-    gz topic -t "/model/diff_drive/cmd_vel" -m gz.msgs.Twist -p "linear: {x: 1.0}, angular: {z: -0.1}"
-    ros2 topic pub /diff_drive/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: -0.1}}"
-  Listen to odometry:
-    gz topic -e -t /model/diff_drive/odometry
-    ros2 topic echo /model/diff_drive/odometry
--->
 <sdf version="1.8">
   <world name="demo">
     <plugin
@@ -75,17 +67,13 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>100 100</size>
+              <size>200 200</size>
             </plane>
           </geometry>
           <surface>
             <friction>
               <ode>
-                <mu>0.64</mu>
-                <mu2>0.64</mu2>
-                <fdir1>0 0 0</fdir1>
-                <slip1>0.0</slip1>
-                <slip2>0.0</slip2>
+                <mu>0.4</mu>
               </ode>
             </friction>
             <contact>
@@ -115,6 +103,37 @@
         </visual>
       </link>
     </model>
+    <!-- <model name="moon">
+      <static>true</static>
+      <pose>0 0 212.296 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <heightmap>
+              <uri>dem/moon.tif</uri>
+              <size>80 80 10</size>
+              <pos>0 0 212.296</pos>
+            </heightmap>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <heightmap>
+              <use_terrain_paging>false</use_terrain_paging>
+              <texture>
+                <diffuse>materials/textures/moon_diffuse.png</diffuse>
+                <normal>materials/textures/moon_normal.png</normal>
+                <size>10</size>
+              </texture>
+              <uri>dem/moon.tif</uri>
+              <size>80 80 10</size>
+              <pos>0 0 212.296</pos>
+              <sampling>2</sampling>
+            </heightmap>
+          </geometry>
+        </visual>
+      </link>
+    </model> -->
 
     <!-- <model name="diff_drive">
       <self_collide>true</self_collide>

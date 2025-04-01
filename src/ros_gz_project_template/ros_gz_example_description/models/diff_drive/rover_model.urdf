@@ -81,8 +81,8 @@
      </geometry>
    </collision>
    <inertial>
-     <mass value="1.5"/>
-     <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
+     <mass value="1"/>
+     <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
    </inertial>
  </link>
   <link name="front_leg_r">
@@ -117,8 +117,8 @@
      </geometry>
    </collision>
    <inertial>
-     <mass value="1.5"/>
-     <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
+     <mass value="1"/>
+     <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
    </inertial>
  </link>
   <link name="back_leg_r">
@@ -184,8 +184,8 @@
      </geometry>
    </collision>
    <inertial>
-     <mass value="1.5"/>
-     <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
+     <mass value="1"/>
+     <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
    </inertial>
  </link>
   <link name="front_leg_l">
@@ -220,8 +220,8 @@
      </geometry>
    </collision>
    <inertial>
-     <mass value="1.5"/>
-     <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
+     <mass value="1"/>
+     <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
    </inertial>
  </link>
   <link name="back_leg_l">
@@ -265,45 +265,22 @@
    <child link="back_leg_l"/>
  </joint>
   <!-- Friction-->
-  <!-- <gazebo reference="front_wheel_l">
-    <mu1>10.0</mu1>
-    <mu2>10.0</mu2>
-    <kp>1000000.0</kp>
-    <kd>100.0</kd>
-    <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
-    <fdir1>0 1 0</fdir1>
-  </gazebo>
-
-  <gazebo reference="back_wheel_l">
-    <mu1>10.0</mu1>
-    <mu2>10.0</mu2>
-    <kp>1000000.0</kp>
-    <kd>100.0</kd>
-    <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
-    <fdir1>0 1 0</fdir1>
+  <gazebo reference="front_wheel_l">
+    <mu>0.40</mu>
   </gazebo>
 
   <gazebo reference="front_wheel_r">
-    <mu1>10.0</mu1>
-    <mu2>10.0</mu2>
-    <kp>1000000.0</kp>
-    <kd>100.0</kd>
-    <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
-    <fdir1>0 1 0</fdir1>
+    <mu>0.40</mu>
   </gazebo>
 
   <gazebo reference="back_wheel_r">
-    <mu1>10.0</mu1>
-    <mu2>10.0</mu2>
-    <kp>1000000.0</kp>
-    <kd>100.0</kd>
-    <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
-    <fdir1>0 1 0</fdir1>
-  </gazebo> -->
+    <mu>0.40</mu>
+  </gazebo>
+
+  <gazebo reference="back_wheel_l">
+    <mu>0.40</mu>
+  </gazebo>
+
 
   <!-- LiDAR Link -->
   <link name="lidar_link">
@@ -380,7 +357,6 @@
     name="ignition::gazebo::systems::JointController">
     <joint_name>frwheel_to_leg_r</joint_name>
     <use_velocity_commands>true</use_velocity_commands>
-    <initial_velocity>1.0</initial_velocity>
     <topic>/model/diff_drive/joint/frwheel_to_leg_r/cmd_vel</topic>
   </plugin>
 
@@ -389,7 +365,6 @@
     name="ignition::gazebo::systems::JointController">
     <joint_name>frwheel_to_leg_l</joint_name>
     <use_velocity_commands>true</use_velocity_commands>
-    <initial_velocity>1.0</initial_velocity>
     <topic>/model/diff_drive/joint/frwheel_to_leg_l/cmd_vel</topic>
   </plugin>
   
@@ -397,7 +372,6 @@
     filename="libignition-gazebo-joint-controller-system.so"
     name="ignition::gazebo::systems::JointController">
     <joint_name>bkwheel_to_leg_r</joint_name>
-    <initial_velocity>1.0</initial_velocity>
     <use_velocity_commands>true</use_velocity_commands>
     <topic>/model/diff_drive/joint/bkwheel_to_leg_r/cmd_vel</topic>
   </plugin>
@@ -407,7 +381,6 @@
     name="ignition::gazebo::systems::JointController">
     <joint_name>bkwheel_to_leg_l</joint_name>
     <use_velocity_commands>true</use_velocity_commands>
-    <initial_velocity>1.0</initial_velocity>
     <topic>/model/diff_drive/joint/bkwheel_to_leg_l/cmd_vel</topic>
   </plugin>
 

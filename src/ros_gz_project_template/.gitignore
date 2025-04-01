@@ -1,3 +1,8 @@
+# ROS 2 build directories
+build/
+log/
+install/
+
 # Prerequisites
 *.d
 
